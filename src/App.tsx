@@ -1,15 +1,20 @@
 import React from 'react';
 
+import {
+  Button
+}
+from "@material-ui/core";
+
 
 
 const App = () => (
   <div>
     
-    <h1>
-    
+    <Button 
+    variant="contained" 
+    color="secondary">
       Bocado
-    
-    </h1>
+    </Button>
 
   </div>
 );
