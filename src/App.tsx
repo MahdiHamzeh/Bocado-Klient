@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {
+  Box,
   Button
 }
 from "@material-ui/core";
@@ -8,15 +9,12 @@ from "@material-ui/core";
 
 
 const App = () => (
-  <div>
-    
+  <Box>
     <Button 
-    variant="contained" 
-    color="secondary">
+    variant="contained">
       Bocado
     </Button>
-
-  </div>
+  </Box>
 );
 
 
