@@ -11,12 +11,11 @@ from "@material-ui/core";
 const App = () => (
   <Box>
     <Button 
-    variant="contained">
+    variant="contained"
+    color="secondary">
       Bocado
     </Button>
   </Box>
 );
-
-
 
 export default App;
