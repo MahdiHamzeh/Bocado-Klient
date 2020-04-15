@@ -1,6 +1,6 @@
 import React from 'react';
 
-// import FrontPage from "./pages/FrontPage";
+// gitimport FrontPage from "./pages/FrontPage";
 
 import SignInPage from "./pages/SignUpPage";
 
