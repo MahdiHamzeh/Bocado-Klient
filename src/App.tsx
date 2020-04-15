@@ -2,7 +2,7 @@ import React from 'react';
 
 // import FrontPage from "./pages/FrontPage";
 
-import SignInPage from "./pages/SignInPage";
+import SignInPage from "./pages/SignUpPage";
 
 
 
