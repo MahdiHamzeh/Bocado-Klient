@@ -1,16 +1,17 @@
 import React from 'react';
 
-import {
-  Box
-}
-from "@material-ui/core";
+import FrontPage from "./pages/FrontPage";
 
 
+
+
+
+document.body.style.margin = "0";
 
 const App = () => (
-  <Box>
-    
-  </Box>
+  <React.Fragment>
+    <FrontPage/>
+  </React.Fragment>
 );
 
 
