@@ -20,6 +20,7 @@ from "../components/recipes/";
 import * as images from "../images";
 
 
+
 const recipes: RecipeWithIngredients[] = [
     {
         name: "Biryani",   
@@ -96,7 +97,6 @@ const recipes: RecipeWithIngredients[] = [
     }
 ];
 
-
 const useStyles = makeStyles(theme => ({
     title: {
         marginTop: theme.spacing() * 4
@@ -120,12 +120,12 @@ type ItemsType = [
 ];
   
 const FrontPage = () => {
-    
-    const items: ItemsType = [
+
+    const pages: ItemsType = [
         "contact us",
         "about us",
         "policies"
-    ];
+    ]
 
     const styles = useStyles();
 
@@ -134,16 +134,13 @@ const FrontPage = () => {
     return (
         <React.Fragment>
             <Navbar 
-            onPageChange={state => {
-                console.log(state);
-            }}
+            isSignedIn={false}
             onSignIn={() => {
-                console.log("sign in");
             }}
-            onSignUp={() => {
-                console.log("sign up");
+            onPageChange={page => {
+                console.log(page);
             }}
-            items={items}/>
+            pages={pages}/>
             
             <Container 
             className={styles.container}

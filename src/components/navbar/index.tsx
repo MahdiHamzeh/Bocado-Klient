@@ -17,13 +17,19 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 
 
 interface Props {
-    readonly items: string[];
+    readonly pages: string[];
 
-    onSignIn: () => void;
+    isSignedIn: boolean;
+
+    onSignIn?: () => void;
     
-    onSignUp: () => void;
+    onSignUp?: () => void;
 
-    onPageChange: (state: Props["items"][0]) => void;
+    onSignOut?: () => void;
+
+    onAccount?: () => void;
+
+    onPageChange: (state: Props["pages"][0]) => void;
 }
 
 const useStyles = makeStyles({
@@ -37,7 +43,7 @@ const useStyles = makeStyles({
 
 const Navbar: React.FC<Props> = props => {    
 
-    const styles = useStyles();
+    const styles = useStyles();    
 
     return (
         <AppBar 
@@ -53,34 +59,51 @@ const Navbar: React.FC<Props> = props => {
                     </Typography>
                     
                     <div>
-                        {props.items.map(item => (
+                        {props.pages.map(page => (
                             <Button 
-                            onClick={() => props.onPageChange(item)}
-                            key={item}
+                            onClick={() => props.onPageChange(page)}
+                            key={page}
                             color="inherit">
-                                {item}
+                                {page}
                             </Button>
                         ))}
                     </div>
 
                     <div>
+                        {props.isSignedIn &&
                         <Button
-                        onClick={props.onSignIn}
                         className={styles.button}
                         variant="contained"
                         color="secondary"
                         endIcon={<AccountCircle/>}>
-                            Sign in
-                        </Button>
+                            Account
+                        </Button>}
                         
+                        {props.isSignedIn && 
+                        <Button
+                        onClick={props.onSignOut}
+                        variant="contained"
+                        color="secondary">
+                            sign out
+                        </Button>}
+
+                        {!props.isSignedIn &&
+                        <Button
+                        onClick={props.onSignIn}
+                        className={styles.button}
+                        variant="contained"
+                        color="secondary">
+                            sign in
+                        </Button>}
+                        
+                        {!props.isSignedIn &&
                         <Button
                         onClick={props.onSignUp}
                         variant="contained"
                         color="secondary">
                             Sign up
-                        </Button>
+                        </Button>}
                     </div>
-            
                 </ToolBar>
             </Container>
         </AppBar>

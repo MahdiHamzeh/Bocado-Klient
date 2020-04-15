@@ -1,6 +1,8 @@
 import React from 'react';
 
-import FrontPage from "./pages/FrontPage";
+// import FrontPage from "./pages/FrontPage";
+
+import SignInPage from "./pages/SignInPage";
 
 
 
@@ -10,7 +12,7 @@ document.body.style.margin = "0";
 
 const App = () => (
   <React.Fragment>
-    <FrontPage/>
+    <SignInPage/>
   </React.Fragment>
 );
 
