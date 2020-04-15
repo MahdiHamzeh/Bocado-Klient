@@ -2,7 +2,9 @@ import React from 'react';
 
 // gitimport FrontPage from "./pages/FrontPage";
 
-import SignUpPage from "./pages/SignUpPage";
+// import SignUpPage from "./pages/SignUpPage";
+
+import SignInPage from "./pages/SignInPage";
 
 
 
@@ -12,7 +14,7 @@ document.body.style.margin = "0";
 
 const App = () => (
   <React.Fragment>
-    <SignUpPage/>
+    <SignInPage/>
   </React.Fragment>
 );
 
