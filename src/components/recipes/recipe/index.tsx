@@ -34,7 +34,7 @@ export interface RecipeProps {
 
     date: Date;
 
-    onClick: (name: string) => void;
+    onClick: () => void;
 }
 
 const useStyles = makeStyles({
@@ -85,7 +85,7 @@ const Recipe: React.FC<RecipeProps> = props => {
             className={styles.buttonContainer}>
                 <Button
                 className={styles.button} 
-                onClick={() => props.onClick(props.name)}
+                onClick={props.onClick}
                 color="secondary"
                 variant="contained">
                     visit recipe

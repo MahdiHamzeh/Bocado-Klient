@@ -49,13 +49,27 @@ const animations = {
     },
 }
 
+export interface Ingredient {
+    type: string,
+    description?: string,
+    amount: {
+        value: number,
+        type: (
+            ("L" |"Dl"| "Cl")
+            | ("Kg" | "Hg" | "G")
+            | ("st")
+        )
+    }
+};
+
 export interface RecipeWithIngredients extends Omit<RecipeProps, "onClick"> {
-    ingredients: Array<string>;
+    ingredients: Array<Ingredient>;
 }
 
 interface Props {
     recipes: Array<RecipeWithIngredients>;
     search: string | null;
+    onToRecipe: (recipe: RecipeWithIngredients) => void;
 }
 
 const useStyles = makeStyles(theme => {
@@ -78,15 +92,18 @@ const useStyles = makeStyles(theme => {
     };
 });
 
-const Recipes: React.FC<Props> = ({recipes, search}) => {
-    
-    const onClickHandler: RecipeProps["onClick"] = name => {
-        console.log(name);
-    };
+const Recipes: React.FC<Props> = props => {
 
     const styles = useStyles();
 
-    const filterdRecipes = filterRecipesByIngredients(recipes, search);
+    const filterdRecipes = filterRecipesByIngredients(props.recipes, props.search);
+
+    const onClickHandler = (index: number) => {
+        
+        const recipe = filterdRecipes[index];
+
+        props.onToRecipe(recipe);
+    };
 
     return (
         <motion.div
@@ -98,9 +115,7 @@ const Recipes: React.FC<Props> = ({recipes, search}) => {
                 {filterdRecipes.map((recipe, index) => {
                     
                     const recipePropsArgs = {
-                        ...recipe,
-                        key: index,
-                        onClick: onClickHandler
+                        ...recipe
                     };
 
                     return (
@@ -111,7 +126,9 @@ const Recipes: React.FC<Props> = ({recipes, search}) => {
                             <Box
                             className={styles.recipeContainer}>
                                 <Recipe
-                                {...recipePropsArgs}/>
+                                {...recipePropsArgs}
+                                key={index}
+                                onClick={() => onClickHandler(index)}/>
                             </Box>
                         </motion.div>
                     )
@@ -135,7 +152,12 @@ export function filterRecipesByIngredients(recipes: Props["recipes"], search: Pr
 
             for (const searchWord of searchWords) {
 
-                const hasIngridient = recipe.ingredients.includes(searchWord);
+                const hasIngridient = (
+                    recipe
+                    .ingredients
+                    .map(ingredient => ingredient.type)
+                    .includes(searchWord)
+                );
 
                 hasAllIngridients = hasAllIngridients && hasIngridient;
 
