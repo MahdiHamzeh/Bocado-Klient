@@ -1,5 +1,3 @@
-import React from "react";
-
 import ErrorPageSection from "./errorPageSection";
 
 import FrontPageSection from "./frontPageSection";
@@ -11,39 +9,41 @@ import SignInPageSection from "./signInPageSection";
 import SignUpPageSection from "./signUpPageSection";
 
 import {
-    Route,
-    Switch
-}
-from "react-router-dom"
+    IPage
+} 
+from "../components/pages";
 
 
-
-type PageType = {
-    exact?: boolean;
-    path: string;
-    component: React.FC<any>
-}
-
-const pages: Array<PageType> = [
+const pages: Array<IPage> = [
     {
         exact: true,
         path: "/",
         component: FrontPageSection
     },
     {
-        exact: true,
-        path: "/recipes/:id",
-        component: RecipePageSection
+        path: "/recipes",
+        pages: [
+            {
+                exact: true,
+                path: "/:id",
+                component: RecipePageSection
+            }
+        ]
     },
     {
-        exact: true,
-        path: "/auth/sign-up",
-        component: SignUpPageSection
-    },
-    {
-        exact: true,
-        path: "/auth/sign-in",
-        component: SignInPageSection
+        path: "/auth",
+        pages: [
+            {
+                exact: true,
+                path: "/sign-up",
+                component: SignUpPageSection
+            },
+            {
+                exact: true,
+                path: "/sign-in",
+                component: SignInPageSection
+            }
+        ]
     },
     {
         path: "/",
@@ -51,16 +51,4 @@ const pages: Array<PageType> = [
     }
 ];
 
-
-
-export default () => {
-    return (
-        <Switch>
-            {pages.map((route: PageType, index: number) => (
-                <Route 
-                {...route}
-                key={index}/>
-            ))}
-        </Switch>
-    )
-}
+export default pages;

@@ -80,9 +80,7 @@ const RecipePageSection: React.FC<RouteComponentProps<Params>> = props => {
     const goBackHandler = () => {
         props.history.goBack();
     }
-
     
-
     return activeRecipe ? (
         <Container 
         className={styles.container}
@@ -131,7 +129,6 @@ const RecipePageSection: React.FC<RouteComponentProps<Params>> = props => {
                     instructions={activeRecipe.instructions}/>
                 </Box>
             </Box>
-
         </Container>
     ) : null;
 }
